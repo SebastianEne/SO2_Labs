@@ -1,0 +1,1 @@
+cmd_/home/seb/lab-so2/lab04-tasks/kernel/so2_cdev.ko := ld -r -m elf_i386 -T /home/seb/Downloads/linux-3.13/scripts/module-common.lds --build-id  -o /home/seb/lab-so2/lab04-tasks/kernel/so2_cdev.ko /home/seb/lab-so2/lab04-tasks/kernel/so2_cdev.o /home/seb/lab-so2/lab04-tasks/kernel/so2_cdev.mod.o
