@@ -21,7 +21,7 @@ MODULE_AUTHOR("SO2");
 MODULE_LICENSE("GPL");
 
 #define LOG_LEVEL	KERN_ALERT
-//#define MY_IOCTL_IN _IOC(_IOC_WRITE, 'k', 1, sizeof(my_ioctl_data))
+#define MY_IOCTL_IN _IOC(_IOC_WRITE, 'k', 1, 1)
 #define MY_MAJOR		42
 #define MY_MINOR		0
 #define NUM_MINORS		1
@@ -108,9 +108,6 @@ static int my_write(struct file *file, const char __user *user_buffer,
 	// ..
 	struct my_device_data *my_data =
 	     (struct my_device_data *) file->private_data;
-
-	printk(LOG_LEVEL "size :%lld, offset:%lld\n", size, *offset);
-
 	size_t bufSize = MIN(BUFSIZ - *offset, size);
 
 	if(copy_from_user(my_data->buffer + *offset, user_buffer, bufSize))
@@ -122,24 +119,28 @@ static int my_write(struct file *file, const char __user *user_buffer,
 }
 
 static long my_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
-{
-/*
-    struct my_device_data *my_data =
-         (struct my_device_data*) file->private_data;
-    my_ioctl_data mid;
- 
-    switch(cmd) {
-    case MY_IOCTL_IN:
-        if( copy_from_user(&mid, (my_ioctl_data *) arg, 
-                           sizeof(my_ioctl_data)) )
-            oseturn -EFAULT; 
-        * process data and execute command 
- 
-        break;
-    default:
-        return -ENOTTY;
-    }
- */
+{	
+	switch(cmd) {
+		case MY_IOCTL_IN:
+		//	if( copy_from_user(&mid, (my_ioctl_data *) arg, 
+	   	//		sizeof(my_ioctl_data)))
+		//	return -EFAULT; 
+		printk(LOG_LEVEL IOCTL_MESSAGE); 	
+			/* process data and execute command */ 
+			break;
+
+		case MY_IOCTL_PRINT:
+		//	if( copy_from_user(&mid, (my_ioctl_data *) arg, 
+	   	//		sizeof(my_ioctl_data)))
+		//	return -EFAULT; 
+		printk(LOG_LEVEL IOCTL_MESSAGE); 	
+			/* process data and execute command */ 
+			break;
+	
+		default:
+			return -ENOTTY;
+	}
+	 
     return 0;
 }
  

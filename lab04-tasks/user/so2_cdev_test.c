@@ -63,7 +63,10 @@ int main(int argc, char **argv)
 
 	switch (argv[1][0]) {
 	case 'p':				/* print */
-
+	 if (ioctl(fd, MY_IOCTL_PRINT, 0) < 0) {
+		/* handle error */
+		printf("Error IOCTL from user-space\n");
+	 }	
 		break;
 	case 's':				/* set buffer */
 		if (argc < 3)
