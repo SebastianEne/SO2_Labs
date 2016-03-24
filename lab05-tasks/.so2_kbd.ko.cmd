@@ -1,0 +1,1 @@
+cmd_/home/seb/lab-so2/lab05-tasks/so2_kbd.ko := ld -r -m elf_i386 -T /home/seb/Downloads/linux-3.13/scripts/module-common.lds --build-id  -o /home/seb/lab-so2/lab05-tasks/so2_kbd.ko /home/seb/lab-so2/lab05-tasks/so2_kbd.o /home/seb/lab-so2/lab05-tasks/so2_kbd.mod.o
