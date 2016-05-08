@@ -113,8 +113,8 @@ irqreturn_t so2_kbd_interrupt_handle(int irq_no, void *dev_id)
 	
 	struct so2_device_data *data = (struct so2_device_data *) dev_id;
 	
-	if (size < BUFSIZ)
-		data->buf[size++] = scancode;
+	if (data->size < BUFFER_SIZE)
+		data->buf[data->size++] = scancode;
 	
 
 	return IRQ_NONE;
@@ -153,7 +153,7 @@ so2_kbd_read(struct file *file, char __user *user_buffer,
 		size = atomic_read(&data->size) - *offset;
 
 	/* TODO 4: allocate the temp buffer */
-	tmp = kmalloc(BUFSIZ, GPF_KERNEL);
+	tmp = kmalloc(BUFFER_SIZE, GPF_KERNEL);
 	if (!tmp) {
 		return -ENOMEM;
 	}

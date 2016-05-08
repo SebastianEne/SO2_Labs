@@ -1,0 +1,1 @@
+cmd_/home/seb/lab-so2/lab06-tasks/3-4-5-deferred/kernel/deferred.ko := ld -r -m elf_i386 -T /home/seb/Downloads/linux-3.13/scripts/module-common.lds --build-id  -o /home/seb/lab-so2/lab06-tasks/3-4-5-deferred/kernel/deferred.ko /home/seb/lab-so2/lab06-tasks/3-4-5-deferred/kernel/deferred.o /home/seb/lab-so2/lab06-tasks/3-4-5-deferred/kernel/deferred.mod.o
